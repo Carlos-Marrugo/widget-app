@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Nuevo Registro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/list">
+        <ion-icon name="list" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="form-container">
+    <div class="image-section" (click)="captureImage()">
+      @if (imagePreview) {
+        <img [src]="imagePreview" class="image-preview">
+      } @else {
+        <div class="placeholder">
+          <ion-icon name="camera" class="camera-icon"></ion-icon>
+          <ion-text class="placeholder-text">Toca para agregar imagen</ion-text>
+        </div>
+      }
+      <div class="image-overlay"></div>
+    </div>
+
+    <ion-item class="description-item" lines="none">
+      <ion-textarea
+        [(ngModel)]="description"
+        placeholder="Describe tu imagen..."
+        autoGrow="true"
+        rows="4"
+        class="custom-textarea"
+        required>
+      </ion-textarea>
+    </ion-item>
+
+    <ion-button 
+      expand="block" 
+      shape="round" 
+      class="submit-button"
+      (click)="onSubmit()"
+      [disabled]="!imagePreview || !description">
+      <ion-icon name="save" slot="start"></ion-icon>
+      Guardar Registro
+    </ion-button>
+  </div>
+</ion-content>
